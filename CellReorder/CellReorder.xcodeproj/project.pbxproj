@@ -16,6 +16,7 @@
 		324E567523869D020083D621 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 324E567423869D020083D621 /* Preview Assets.xcassets */; };
 		324E567823869D020083D621 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 324E567623869D020083D621 /* LaunchScreen.storyboard */; };
 		324E568023869D4E0083D621 /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324E567F23869D4E0083D621 /* Animal.swift */; };
+		32632FC0241289CF00F3BC99 /* ReorderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32632FBF241289CF00F3BC99 /* ReorderTableView.swift */; };
 		32ED8BA723C36519000CB1EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32ED8BA623C36519000CB1EA /* Main.storyboard */; };
 		32ED8BAA23C366E8000CB1EA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32ED8BA923C366E8000CB1EA /* HomeViewController.swift */; };
 		32ED8BAD23C3907C000CB1EA /* TableViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32ED8BAC23C3907C000CB1EA /* TableViewRepresentable.swift */; };
@@ -33,6 +34,7 @@
 		324E567723869D020083D621 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		324E567923869D020083D621 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		324E567F23869D4E0083D621 /* Animal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animal.swift; sourceTree = "<group>"; };
+		32632FBF241289CF00F3BC99 /* ReorderTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderTableView.swift; sourceTree = "<group>"; };
 		32ED8BA623C36519000CB1EA /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		32ED8BA923C366E8000CB1EA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		32ED8BAC23C3907C000CB1EA /* TableViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewRepresentable.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 		324E566A23869D000083D621 /* CellReorder */ = {
 			isa = PBXGroup;
 			children = (
+				32632FBE2412893600F3BC99 /* Reorder */,
 				32ED8BAB23C3904E000CB1EA /* Representables */,
 				32ED8BA823C366BE000CB1EA /* View Controllers */,
 				322559032386BE95001F69E6 /* SwiftUI Views */,
@@ -107,6 +110,14 @@
 				324E567F23869D4E0083D621 /* Animal.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		32632FBE2412893600F3BC99 /* Reorder */ = {
+			isa = PBXGroup;
+			children = (
+				32632FBF241289CF00F3BC99 /* ReorderTableView.swift */,
+			);
+			path = Reorder;
 			sourceTree = "<group>";
 		};
 		32ED8BA823C366BE000CB1EA /* View Controllers */ = {
@@ -197,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32632FC0241289CF00F3BC99 /* ReorderTableView.swift in Sources */,
 				324E566C23869D000083D621 /* AppDelegate.swift in Sources */,
 				3245B1A6238EA332008CFC8B /* AnimalCell.swift in Sources */,
 				324E568023869D4E0083D621 /* Animal.swift in Sources */,

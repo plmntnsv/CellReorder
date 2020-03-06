@@ -11,12 +11,23 @@ import UIKit
 class HomeViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
-    private let cells: [String] = ["Cell 1", "Cell 2", "Cell 3", "Cell 4"]
+    private let numberOfCells = 10
+    private var cells: [String] {
+        get {
+            var cellArray: [String] = []
+            for index in 1...numberOfCells {
+                cellArray.append("Cell \(index)")
+            }
+            
+            return cellArray
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.enableReorder(data: cells)
     }
 }
 
