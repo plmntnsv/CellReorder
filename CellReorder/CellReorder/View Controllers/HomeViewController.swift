@@ -23,7 +23,7 @@ class HomeViewController: UIViewController {
 //        }
 //    }
     
-    private var cells: [String] = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]
+    private var cells: [String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +49,6 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 extension HomeViewController: ReorderTableViewDelegate {
     func rowChanged(at: IndexPath, to: IndexPath) {
         cells.swapAt(at.row, to.row)
-        print(cells)
+        //print(cells)
     }
 }

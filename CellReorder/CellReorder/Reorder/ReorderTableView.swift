@@ -42,6 +42,8 @@ class ReorderTableView: UITableView {
         let state = longPress.state
         let locationInView = longPress.location(in: self)
         let indexPath = self.indexPathForRow(at: locationInView)
+        print()
+        print("LOCATION INDEXPATH: \(indexPath)")
         
         // Cell that we are moving
         struct Cell {
@@ -50,11 +52,17 @@ class ReorderTableView: UITableView {
         
         // Start position of the moving cell
         struct Path {
-            static var initialIndexPath : IndexPath?
+            static var initialIndexPath : IndexPath? {
+                didSet {
+                    print("INITIAL INDEX PATH: \(initialIndexPath)")
+                }
+            }
         }
             
         switch state {
             case .began:
+                print()
+                print("==========================================")
                 print("BEGAN")
                 if indexPath != nil {
                     Path.initialIndexPath = indexPath
@@ -84,16 +92,37 @@ class ReorderTableView: UITableView {
                 var center = Cell.snapshot!.center
                 center.y = locationInView.y
                 Cell.snapshot!.center = center
-                if ((indexPath != nil) && (indexPath != Path.initialIndexPath)) {
-                    // Update data source
-                    //itemsArray.insert(itemsArray.remove(at: Path.initialIndexPath!.row), at: indexPath!.row)
-                    reorderDelegate?.rowChanged(at: Path.initialIndexPath!, to: indexPath!)
+                if let indexPath = indexPath {
+                    if indexPath != Path.initialIndexPath {
+                        // Update data source
+                        //itemsArray.insert(itemsArray.remove(at: Path.initialIndexPath!.row), at: indexPath!.row)
+                        reorderDelegate?.rowChanged(at: Path.initialIndexPath!, to: indexPath)
+                        
+                        // Update UI
+                        self.moveRow(at: Path.initialIndexPath!, to: indexPath)
+                        Path.initialIndexPath = indexPath
+                    }
                     
-                    // Update UI
-                    self.moveRow(at: Path.initialIndexPath!, to: indexPath!)
-                    Path.initialIndexPath = indexPath
+                    print(indexPath.row)
+                    print(self.visibleCells.count)
+                    let last = self.indexPath(for: self.visibleCells.last!)
+                    
+                    print("LAST: \(last)")
+                    
+                    if indexPath.row >= self.visibleCells.count - 3 && self.numberOfRows(inSection: 0) - 1 > last!.row {
+                        self.scrollToRow(at: IndexPath(row: last!.row + 1, section: 0), at: .bottom, animated: true)
+                    }
                 }
+                
+                
+        //case .ended:
+            
             default:
+//                print(self.visibleCells.map{$0.textLabel?.text})
+//                print("CAPACITY \(self.visibleCells.capacity)")
+//                print("COUNT \(self.visibleCells.count)")
+                print()
+                print("DROPPING CELL IN: \(indexPath)")
                 let cell = self.cellForRow(at: Path.initialIndexPath!)
                 cell?.isHidden = false
                 cell?.alpha = 0.0
