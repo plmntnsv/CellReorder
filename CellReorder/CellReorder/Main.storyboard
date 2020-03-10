@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1my-66-KjA" customClass="ReorderTableView" customModule="CellReorder" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="718"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="sZn-YT-f3W" id="eHq-kE-L03"/>
@@ -28,7 +28,7 @@
                         <constraints>
                             <constraint firstItem="1my-66-KjA" firstAttribute="leading" secondItem="8pZ-G5-6Go" secondAttribute="leading" id="3TM-kt-he5"/>
                             <constraint firstItem="8pZ-G5-6Go" firstAttribute="trailing" secondItem="1my-66-KjA" secondAttribute="trailing" id="Qx9-VG-UX9"/>
-                            <constraint firstItem="8pZ-G5-6Go" firstAttribute="bottom" secondItem="1my-66-KjA" secondAttribute="bottom" id="gHg-g6-xSL"/>
+                            <constraint firstItem="8pZ-G5-6Go" firstAttribute="bottom" secondItem="1my-66-KjA" secondAttribute="bottom" constant="50" id="gHg-g6-xSL"/>
                             <constraint firstItem="1my-66-KjA" firstAttribute="top" secondItem="8pZ-G5-6Go" secondAttribute="top" constant="50" id="vql-V8-KmS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8pZ-G5-6Go"/>

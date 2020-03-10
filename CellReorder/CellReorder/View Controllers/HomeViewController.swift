@@ -11,19 +11,19 @@ import UIKit
 class HomeViewController: UIViewController {
     @IBOutlet var tableView: ReorderTableView!
     
-    private let numberOfCells = 10
-//    private var cells: [String] {
-//        get {
-//            var cellArray: [String] = []
-//            for index in 1...numberOfCells {
-//                cellArray.append("Cell \(index)")
-//            }
-//
-//            return cellArray
-//        }
-//    }
+    private let numberOfCells = 40
+    private var cellsContent: [String] {
+        get {
+            var cellArray: [String] = []
+            for index in 0...numberOfCells-1 {
+                cellArray.append("\(index)")
+            }
+
+            return cellArray
+        }
+    }
     
-    private var cells: [String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]
+    private lazy var cells: [String] = cellsContent
     
     override func viewDidLoad() {
         super.viewDidLoad()

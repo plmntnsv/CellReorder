@@ -12,7 +12,7 @@ let allAnimals = AnimalType.allCases.map { Animal(type: $0) }
 
 struct ContentView: View {
     var animals: [Animal] = []
-    @State var animalData = allAnimals
+    @State var animalData = allAnimals + allAnimals + allAnimals
     @State private var currentPage = 0
     
     init(animals: [Animal]) {

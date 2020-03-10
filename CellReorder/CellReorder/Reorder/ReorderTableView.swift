@@ -17,6 +17,7 @@ class ReorderTableView: UITableView {
     
     func enableReorder() {
         let longpress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureRecognized(gestureRecognizer:)))
+        //self.decelerationRate = DecelerationRate(rawValue: 0.1)
         self.addGestureRecognizer(longpress)
     }
     
@@ -50,7 +51,7 @@ class ReorderTableView: UITableView {
             static var snapshot : UIView?
         }
         
-        // Start position of the moving cell
+        // Current position of the moving cell
         struct Path {
             static var initialIndexPath : IndexPath? {
                 didSet {
@@ -94,8 +95,7 @@ class ReorderTableView: UITableView {
                 Cell.snapshot!.center = center
                 if let indexPath = indexPath {
                     if indexPath != Path.initialIndexPath {
-                        // Update data source
-                        //itemsArray.insert(itemsArray.remove(at: Path.initialIndexPath!.row), at: indexPath!.row)
+                        // Delegate updating the dataSource
                         reorderDelegate?.rowChanged(at: Path.initialIndexPath!, to: indexPath)
                         
                         // Update UI
@@ -103,14 +103,18 @@ class ReorderTableView: UITableView {
                         Path.initialIndexPath = indexPath
                     }
                     
-                    print(indexPath.row)
-                    print(self.visibleCells.count)
-                    let last = self.indexPath(for: self.visibleCells.last!)
+                    let currentOffset = self.contentOffset
                     
-                    print("LAST: \(last)")
-                    
-                    if indexPath.row >= self.visibleCells.count - 3 && self.numberOfRows(inSection: 0) - 1 > last!.row {
-                        self.scrollToRow(at: IndexPath(row: last!.row + 1, section: 0), at: .bottom, animated: true)
+                    // Managing auto scrolling down
+                    if let lastVisibleCell = self.visibleCells.last,
+                        let indexPathOfLast = self.indexPath(for: lastVisibleCell),
+                        indexPath.row >= indexPathOfLast.row - 1 &&
+                            self.numberOfRows(inSection: 0) - 1 > indexPathOfLast.row {
+                        
+                        self.contentOffset = CGPoint(x: currentOffset.x, y: currentOffset.y + 10)
+//                        self.scrollToRow(at: IndexPath(row: indexPathOfLast.row + 1, section: 0), at: .top, animated: true)
+                    } else if indexPath.row <= 1 {
+                        self.contentOffset = CGPoint(x: currentOffset.x, y: currentOffset.y - 10)
                     }
                 }
                 
@@ -123,6 +127,7 @@ class ReorderTableView: UITableView {
 //                print("COUNT \(self.visibleCells.count)")
                 print()
                 print("DROPPING CELL IN: \(indexPath)")
+                print("PATH.INITIAL: \(Path.initialIndexPath)")
                 let cell = self.cellForRow(at: Path.initialIndexPath!)
                 cell?.isHidden = false
                 cell?.alpha = 0.0
