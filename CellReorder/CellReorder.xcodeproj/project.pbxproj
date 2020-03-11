@@ -17,6 +17,7 @@
 		324E567823869D020083D621 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 324E567623869D020083D621 /* LaunchScreen.storyboard */; };
 		324E568023869D4E0083D621 /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324E567F23869D4E0083D621 /* Animal.swift */; };
 		32632FC0241289CF00F3BC99 /* ReorderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32632FBF241289CF00F3BC99 /* ReorderTableView.swift */; };
+		32C0976824193A0800F7D68D /* ReorderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C0976724193A0800F7D68D /* ReorderCell.swift */; };
 		32ED8BA723C36519000CB1EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32ED8BA623C36519000CB1EA /* Main.storyboard */; };
 		32ED8BAA23C366E8000CB1EA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32ED8BA923C366E8000CB1EA /* HomeViewController.swift */; };
 		32ED8BAD23C3907C000CB1EA /* TableViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32ED8BAC23C3907C000CB1EA /* TableViewRepresentable.swift */; };
@@ -34,7 +35,8 @@
 		324E567723869D020083D621 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		324E567923869D020083D621 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		324E567F23869D4E0083D621 /* Animal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animal.swift; sourceTree = "<group>"; };
-		32632FBF241289CF00F3BC99 /* ReorderTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderTableView.swift; sourceTree = "<group>"; };
+		32632FBF241289CF00F3BC99 /* ReorderTableView.swift */ = {isa = PBXFileReference; indentWidth = 5; lastKnownFileType = sourcecode.swift; path = ReorderTableView.swift; sourceTree = "<group>"; };
+		32C0976724193A0800F7D68D /* ReorderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderCell.swift; sourceTree = "<group>"; };
 		32ED8BA623C36519000CB1EA /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		32ED8BA923C366E8000CB1EA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		32ED8BAC23C3907C000CB1EA /* TableViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewRepresentable.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				32632FBF241289CF00F3BC99 /* ReorderTableView.swift */,
+				32C0976724193A0800F7D68D /* ReorderCell.swift */,
 			);
 			path = Reorder;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				32ED8BAD23C3907C000CB1EA /* TableViewRepresentable.swift in Sources */,
 				324E566E23869D000083D621 /* SceneDelegate.swift in Sources */,
 				32ED8BAA23C366E8000CB1EA /* HomeViewController.swift in Sources */,
+				32C0976824193A0800F7D68D /* ReorderCell.swift in Sources */,
 				322559022386BC81001F69E6 /* AnimalDetails.swift in Sources */,
 				324E567023869D000083D621 /* ContentView.swift in Sources */,
 			);
