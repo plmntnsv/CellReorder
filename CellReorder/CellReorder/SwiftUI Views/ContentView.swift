@@ -27,6 +27,12 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
+            TableVCRepresentable()
+            .tabItem {
+                Image(systemName: "wand.and.rays")
+                Text("TableView")
+            }.tag(0)
+            
             NavigationView {
                 List {
                     ForEach(animalData, id: \.id) { animal in
@@ -41,12 +47,6 @@ struct ContentView: View {
             .tabItem {
                 Image(systemName: "ant.fill")
                 Text("List")
-            }.tag(0)
-            
-            TableVCRepresentable()
-            .tabItem {
-                Image(systemName: "wand.and.rays")
-                Text("TableView")
             }.tag(1)
         }
     }

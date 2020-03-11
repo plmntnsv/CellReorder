@@ -11,7 +11,7 @@ import UIKit
 class HomeViewController: UIViewController {
     @IBOutlet var tableView: ReorderTableView!
     
-    private let numberOfCells = 40
+    private let numberOfCells = 20
     private var cellsContent: [String] {
         get {
             var cellArray: [String] = []

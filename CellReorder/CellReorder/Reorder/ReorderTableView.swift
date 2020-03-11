@@ -6,6 +6,9 @@
 //  Copyright © 2020 Plamen Atanasov. All rights reserved.
 //
 
+// different section support
+// extract magic numbers
+
 import UIKit
 
 protocol ReorderTableViewDelegate {
@@ -36,15 +39,18 @@ class ReorderTableView: UITableView {
     }
     
     @objc private func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
-        print()
-        print()
-        print("START")
+//        print()
+//        print("START")
         let longPress = gestureRecognizer as! UILongPressGestureRecognizer
         let state = longPress.state
         let locationInView = longPress.location(in: self)
+        print("LOC: \(locationInView)")
+        print(self.bounds.contains(locationInView))
+        
+        
         let indexPath = self.indexPathForRow(at: locationInView)
-        print()
-        print("LOCATION INDEXPATH: \(indexPath)")
+        //print()
+        //print("LOCATION INDEXPATH: \(indexPath)")
         
         // Cell that we are moving
         struct Cell {
@@ -55,7 +61,7 @@ class ReorderTableView: UITableView {
         struct Path {
             static var initialIndexPath : IndexPath? {
                 didSet {
-                    print("INITIAL INDEX PATH: \(initialIndexPath)")
+                    print("CURRENT CELL ROW: \(initialIndexPath?.row)")
                 }
             }
         }
@@ -90,6 +96,12 @@ class ReorderTableView: UITableView {
                     )
                 }
             case .changed:
+                //print(self.visibleCells.map { $0.textLabel!.text})
+//                let visCell = self.visibleCells.first
+//                let ip = self.indexPath(for: visCell!)
+//                let prevCell = cellForRow(at: IndexPath(row: ip!.row - 1, section: 0))
+//                print("PREV CELL: \(prevCell)")
+                
                 var center = Cell.snapshot!.center
                 center.y = locationInView.y
                 Cell.snapshot!.center = center
@@ -101,20 +113,23 @@ class ReorderTableView: UITableView {
                         // Update UI
                         self.moveRow(at: Path.initialIndexPath!, to: indexPath)
                         Path.initialIndexPath = indexPath
+                        print("CHANGING")
                     }
                     
                     let currentOffset = self.contentOffset
                     
-                    // Managing auto scrolling down
+                    // Managing auto scrolling down/up
                     if let lastVisibleCell = self.visibleCells.last,
                         let indexPathOfLast = self.indexPath(for: lastVisibleCell),
-                        indexPath.row >= indexPathOfLast.row - 1 &&
-                            self.numberOfRows(inSection: 0) - 1 > indexPathOfLast.row {
-                        
-                        self.contentOffset = CGPoint(x: currentOffset.x, y: currentOffset.y + 10)
-//                        self.scrollToRow(at: IndexPath(row: indexPathOfLast.row + 1, section: 0), at: .top, animated: true)
-                    } else if indexPath.row <= 1 {
-                        self.contentOffset = CGPoint(x: currentOffset.x, y: currentOffset.y - 10)
+                        indexPath.row >= indexPathOfLast.row - 2 &&
+                        self.numberOfRows(inSection: 0) - 1 > indexPathOfLast.row {
+                            self.contentOffset = CGPoint(x: currentOffset.x, y: currentOffset.y + 10)
+
+                    } else if let firstVisibleCell = self.visibleCells.first,
+                        let indexPathOfFirst = self.indexPath(for: firstVisibleCell),
+                        indexPath.row <= indexPathOfFirst.row + 2 &&
+                        0 > indexPathOfFirst.row && indexPathOfFirst.row > 1 {
+                            self.contentOffset = CGPoint(x: currentOffset.x, y: currentOffset.y - 10)
                     }
                 }
                 
@@ -122,17 +137,19 @@ class ReorderTableView: UITableView {
         //case .ended:
             
             default:
-//                print(self.visibleCells.map{$0.textLabel?.text})
-//                print("CAPACITY \(self.visibleCells.capacity)")
-//                print("COUNT \(self.visibleCells.count)")
                 print()
-                print("DROPPING CELL IN: \(indexPath)")
-                print("PATH.INITIAL: \(Path.initialIndexPath)")
+                print("DROPPING CELL IN ROW: \(indexPath!.row)")
+                print("PATH.INITIAL: \(Path.initialIndexPath!.row)")
+                let top = cellForRow(at: IndexPath(row: indexPath!.row - 1, section: 0))
+                let bottom = cellForRow(at: IndexPath(row: indexPath!.row + 1, section: 0))
+                print("TOP CELL: \(top?.textLabel?.text)")
+                print("BOTTOM CELL: \(bottom?.textLabel?.text)")
+//
                 let cell = self.cellForRow(at: Path.initialIndexPath!)
                 cell?.isHidden = false
                 cell?.alpha = 0.0
                 UIView.animate(withDuration: 0.25, animations: { () -> Void in
-                    Cell.snapshot!.center = (cell?.center)!
+                    Cell.snapshot!.center = cell!.center
                     Cell.snapshot!.transform = CGAffineTransform.identity
                     Cell.snapshot!.alpha = 0.0
                     cell?.alpha = 1.0
@@ -143,6 +160,10 @@ class ReorderTableView: UITableView {
                             Cell.snapshot = nil
                         }
                 })
+                
+//                if let cell = self.cellForRow(at: Path.initialIndexPath!) {
+//
+//                }
         }
     }
 }
