@@ -121,8 +121,7 @@ class ReorderTableView: UITableView {
                          if finished {
                               cell?.isHidden = true
                          }
-                    }
-                    )
+                    })
                }
           case .changed:
                var center = Cell.snapshot!.center
@@ -130,11 +129,15 @@ class ReorderTableView: UITableView {
                Cell.snapshot!.center = center
                if let indexPath = indexPath {
                     if indexPath != Path.initialIndexPath {
+                         self.beginUpdates()
                          // Delegate updating the dataSource
                          reorderDelegate?.rowChanged(at: Path.initialIndexPath!, to: indexPath)
                          
                          // Update UI
+                         
                          self.moveRow(at: Path.initialIndexPath!, to: indexPath)
+                         self.endUpdates()
+                         print("CELL MOVED FROM \(Path.initialIndexPath) TO \(indexPath)")
                          Path.initialIndexPath = indexPath
                     }
                     
@@ -160,7 +163,8 @@ class ReorderTableView: UITableView {
                print()
                print("DROPPING CELL IN: \(indexPath)")
                print("PATH.INITIAL: \(Path.initialIndexPath)")
-
+               print()
+               print(self.visibleCells.map { $0.textLabel?.text })
                let cell = self.cellForRow(at: Path.initialIndexPath!)
                cell?.isHidden = false
                cell?.alpha = 0.0

@@ -32,6 +32,13 @@ class HomeViewController: UIViewController {
         tableView.reorderDelegate = self
         tableView.enableReorder()
     }
+    
+    @IBAction func buttonTapped(_ sender: Any) {
+        let first = IndexPath(row: 5, section: 0)
+        let second = IndexPath(row: 1, section: 0)
+        tableView.moveRow(at: second, to: first )
+        rowChanged(at: second, to: first)
+    }
 }
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
@@ -49,6 +56,5 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 extension HomeViewController: ReorderTableViewDelegate {
     func rowChanged(at: IndexPath, to: IndexPath) {
         cells.swapAt(at.row, to.row)
-        //print(cells)
     }
 }
